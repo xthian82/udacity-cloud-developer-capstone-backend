@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Recipe",
+  "type": "object",
+  "properties": {
+    "recipeId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 2
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "attachmentUrl": {
+      "type": "string"
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "socialRank": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false
+}
+

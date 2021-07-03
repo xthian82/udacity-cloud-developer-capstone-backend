@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "01ddb417-6fd4-4421-90f6-9655e4abe4e5",
+		"name": "Udacity Final Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "Get all recipes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipes",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Popular foodies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/search-recipe",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"search-recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/search-recipe?q=vinegar",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"search-recipe"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "vinegar"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get recipe by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipe/35382",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipe",
+								"35382"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create recipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recipeId\": \"35382\",\n  \"attachmentUrl\": \"https://www.smalltownwoman.com/wp-content/uploads/2015/04/Jalapeno-Popper-Grilled-Cheese-2-II.jpg\",\n   \"title\": \"Jalapeno Popper Grilled Cheese Sandwich\",\n   \"category\": \"spicy food, keto\",\n   \"ingredients\": [\"oil\", \"thee crops\", \"2 mass\", \"1 vinegar\"]     \n    }"
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipes",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update recipe",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"recipeId\": 35382,\n   \"title\": \"Jalapenos Popper Grilled Cheese Sandwich\",\n   \"category\": \"spicy food\"   \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipes/35382",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipes",
+								"35382"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipes/35382",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipes",
+								"35382"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get attachment URL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/recipes/3836b777-9bc4-4429-9b79-ba4e4f5f91c0/attachment",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"recipes",
+								"3836b777-9bc4-4429-9b79-ba4e4f5f91c0",
+								"attachment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiId",
+			"value": "2b1ha2nwv8"
+		},
+		{
+			"key": "authToken",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjBPQ1ZVc0RmUTZLdk5SZ05qWEVmMCJ9.eyJnaXZlbl9uYW1lIjoiY3Jpc3RoaWFuIiwiZmFtaWx5X25hbWUiOiJyZWNhbGRlIiwibmlja25hbWUiOiJjcmVjYWxkZSIsIm5hbWUiOiJjcmlzdGhpYW4gcmVjYWxkZSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHZ0Y5UWN5ZmloUzJQanJra1pfUERMT0dEZ2VwN09kUjlRUXlqMzAzZz1zOTYtYyIsImxvY2FsZSI6ImVzIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMzBUMDI6MjU6MTUuMzM3WiIsImVtYWlsIjoiY3JlY2FsZGVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vZGV2LW41Mmd3c3F6LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExMTQ5MjAzNTA4NTg1MzAyNzE5OSIsImF1ZCI6Ik1oUjh4bENoMXQ1UzB3d285cmtwM1hGa2pWNThNTVlOIiwiaWF0IjoxNjI1MDE5OTE3LCJleHAiOjE2MjUwNTU5MTcsIm5vbmNlIjoiYUdkVE1GbHNjWFJQZW1scVJYNDVaa1ZuU2w5MFIyVnVkRWxUUmtkMWJITlNSMUpWV1VSbVVtOUdNdz09In0.qLZW5q1XR5o0LsAtvpUKGLBWdLpj7buHmiolzZhd9OIUQ-JVNa3tumU7TgiahMq0NywU9BkXrXQETTHt27y2Kc04P1MYpjpspyHZKUlK4kXp8npNRhDHV9F6dbJKrDrBoe6NoJ65nZXCJuNGbOTGewoDpznzKm-0Vzozh2k41Lazw4vYjUMksSImSaiigtTV9Lts6lbFb4Umhq5kDLBWhlhrfdE3N6CCJAk4FHAymPb_wwxUeCOBH3EBhXP37qy2JnpNulAXPNdVcAak4nhK5TK82RfCzSVEnCiIrZrUwXa1lUepBBiXr7RvJLd-l73ERgCTGKDCRoTw0z-iWPscFw"
+		}
+	]
+}
