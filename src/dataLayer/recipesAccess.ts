@@ -55,14 +55,15 @@ export class RecipesAccess {
         const result = await this.docClient.scan({
             TableName: this.recipesTable,
             IndexName: recipesIndexName,
-            FilterExpression: 'recipeId = :recipeId',
+            Limit: 1,
+            FilterExpression: 'contains(recipeId, :recipeId)',
             ExpressionAttributeValues: {
                 ':recipeId': recipeId
-            },
-            Limit: 1
+            }
         }).promise()
 
         const item = result.Items
+        logger.info(`reeturnig = ${item}`)
         return item[0] as RecipeItem
     }
 
