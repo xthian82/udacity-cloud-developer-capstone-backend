@@ -1,4 +1,4 @@
-import {DocumentClient} from 'aws-sdk/clients/dynamodb'
+import {DocumentClient, ItemList} from 'aws-sdk/clients/dynamodb'
 import {RecipeItem} from "../models/RecipeItem";
 import {RecipeUpdate} from "../models/RecipeUpdate";
 import {createLogger} from "../utils/logger";
@@ -146,16 +146,14 @@ export class RecipesAccess {
             TableName: this.recipesTable,
             IndexName: recipeTitleIndexName,
             FilterExpression: 'contains(titledIngs, :containsStr)',
-            //KeyConditionExpression: 'contains(titledIngs, :containsStr)',
-            //KeyConditionExpression: 'userId = :userId',
             ExpressionAttributeValues: {
                 ':containsStr': querySearch
             },
             Limit: 100
         }).promise()
 
-        const items = result.Items
-        return items as RecipeItem[]
+        return this.parsePublicData(result.Items);
+
     }
 
     async mostPopularRecipes(): Promise<RecipeItem[]> {
@@ -166,15 +164,33 @@ export class RecipesAccess {
             IndexName: recipeSocRankIndexName,
             Limit: 20,
             FilterExpression: 'socialRank >= :socialRank',
-            //KeyConditionExpression: 'socialRank >= :socialRank',
-            //ScanIndexForward: false,
             ExpressionAttributeValues: {
                 ':socialRank': 0
             }
         }).promise()
 
-        const items = result.Items
-        return items as RecipeItem[]
+        return this.parsePublicData(result.Items);
+    }
+
+
+    private parsePublicData(itemList: ItemList) {
+        const result: RecipeItem[] = []
+        if (itemList) {
+            itemList.forEach(r => {
+                const data: RecipeItem = {
+                    recipeId: r.recipeId as string,
+                    createdAt: r.createdAt as string,
+                    title: r.title as string,
+                    publisher: r.publisher as string,
+                    category: r.category as string,
+                    attachmentUrl: r.attachmentUrl as string,
+                    ingredients: r.ingredients as [string],
+                    socialRank: r.socialRank as number
+                }
+                result.push(data)
+            })
+        }
+        return result
     }
 }
 
